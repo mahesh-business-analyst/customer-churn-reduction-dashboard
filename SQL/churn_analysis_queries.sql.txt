@@ -1,0 +1,27 @@
+Query 1 Churn by Region
+SELECT Region, COUNT(*) AS Churned_Customers
+FROM customers
+WHERE Status = 'Churned'
+GROUP BY Region;
+
+Query 2 Churn by Plan Type
+SELECT Plan_Type, COUNT(*) AS Churned_Customers
+FROM customers
+WHERE Status = 'Churned'
+GROUP BY Plan_Type;
+
+Query 3 Average Satisfaction by Status
+SELECT Status, AVG(Satisfaction_Score) AS Avg_Score
+FROM customers
+GROUP BY Status;
+
+Query 4 Revenue at Risk
+SELECT SUM(Monthly_Fee) AS Revenue_At_Risk
+FROM customers
+WHERE Status = 'Churned';
+
+Query 5 High Risk Customers
+SELECT Customer_ID, Region, Plan_Type, Satisfaction_Score
+FROM customers
+WHERE Satisfaction_Score <= 3
+AND LOWER(Status) = 'active';
